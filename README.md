@@ -6,8 +6,8 @@ técnicas de manejo preventivo usando la **API de Groq**.
 
 ## 🔗 Demo
 
-- **App desplegada:** `<pega aquí la URL de Streamlit Community Cloud>`
-- **Repositorio:** `<pega aquí el enlace del repo de GitHub>`
+- **App desplegada:** `https://deteccion-enfermedad-hojas-cafe-marcio-rivera.streamlit.app/`
+- **Repositorio:** `https://github.com/marciorivera/deteccion-enfermedad-hojas-cafe`
 
 ## 🩺 Enfermedades detectadas
 
