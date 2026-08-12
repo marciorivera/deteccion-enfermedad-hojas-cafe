@@ -20,7 +20,7 @@ from groq_service import get_disease_guidance
 # Configuración de la página
 # --------------------------------------------------------------------------
 st.set_page_config(
-    page_title=" | Diagnóstico Foliar de Café - Marcio Rivera",
+    page_title="Diagnóstico Foliar de Café",
     page_icon="🌿",
     layout="wide",
 )
@@ -70,26 +70,60 @@ DISEASE_INFO = {
 st.markdown(
     """
     <style>
-    .stApp { background-color: #f7f4ee; }
-    h1, h2, h3 { font-family: Georgia, 'Times New Roman', serif; color: #1f2a1f; }
+    /* Fondo y texto base */
+    .stApp {
+        background-color: #f7f4ee !important;
+        color: #2b2a24 !important;
+    }
+    .stApp, .stApp p, .stApp span, .stApp label, .stApp div,
+    .stApp li, .stMarkdown, [data-testid="stCaptionContainer"] {
+        color: #2b2a24 !important;
+    }
+    h1, h2, h3, h4, h5 {
+        font-family: Georgia, 'Times New Roman', serif !important;
+        color: #1f2a1f !important;
+    }
+    p, span, div, li { font-family: -apple-system, 'Segoe UI', Arial, sans-serif; }
+
     .adg-eyebrow {
         font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
-        color: #8a8478; font-weight: 600; margin-bottom: 0.2rem;
+        color: #8a8478 !important; font-weight: 600; margin-bottom: 0.2rem;
     }
     .adg-confidence {
-        font-size: 2.6rem; font-weight: 700; color: #1f2a1f; line-height: 1;
+        font-size: 2.6rem; font-weight: 700; color: #1f2a1f !important; line-height: 1;
     }
     .adg-card {
-        background-color: #ffffff; border: 1px solid #e7e2d6; border-radius: 10px;
+        background-color: #ffffff !important; border: 1px solid #e7e2d6; border-radius: 10px;
         padding: 1.1rem 1.3rem; margin-bottom: 0.7rem;
     }
+    .adg-card, .adg-card * { color: #2b2a24 !important; }
     .adg-step-num {
-        display: inline-block; background-color: #2f5233; color: white;
+        display: inline-block; background-color: #2f5233; color: white !important;
         border-radius: 6px; width: 26px; height: 26px; text-align: center;
         line-height: 26px; font-size: 0.8rem; font-weight: 700; margin-right: 0.6rem;
     }
-    .adg-step-title { font-weight: 700; color: #1f2a1f; font-size: 0.95rem; }
-    .adg-step-body { color: #4a473d; font-size: 0.88rem; margin-top: 0.25rem; }
+    .adg-step-title { font-weight: 700; color: #1f2a1f !important; font-size: 0.95rem; }
+    .adg-step-body { color: #4a473d !important; font-size: 0.88rem; margin-top: 0.25rem; }
+
+    /* Pestañas (Subir archivo / Usar cámara) */
+    button[data-baseweb="tab"] { color: #2b2a24 !important; }
+    button[data-baseweb="tab"][aria-selected="true"] { color: #2f5233 !important; }
+
+    /* Botón principal */
+    .stButton > button {
+        background-color: #2f5233 !important; color: #ffffff !important;
+        border: none !important; border-radius: 8px !important;
+    }
+    .stButton > button:hover { background-color: #26421f !important; }
+    .stButton > button:disabled { background-color: #cfd3c8 !important; color: #ffffff !important; }
+
+    /* Zona de carga de archivo */
+    [data-testid="stFileUploaderDropzone"] {
+        background-color: #ffffff !important; border: 1px dashed #c9c3b3 !important;
+    }
+    [data-testid="stFileUploaderDropzone"] * { color: #2b2a24 !important; }
+
+    hr { border-color: #e7e2d6 !important; }
     </style>
     """,
     unsafe_allow_html=True,
@@ -137,7 +171,7 @@ left, right = st.columns([1, 1.15], gap="large")
 
 with left:
     st.markdown("<div class='adg-eyebrow'>Captura de Imagen Foliar</div>", unsafe_allow_html=True)
-    st.title("Diagnóstico de Hoja de Café")
+    st.title("Diagnóstico de Hoja de Café - Marcio Rivera")
     st.write(
         "Posicione la hoja de café bajo luz natural. El sistema detectará "
         "automáticamente signos de Roya, Phoma, Minador"
@@ -239,4 +273,3 @@ with right:
                 c2.caption(h["timestamp"])
     else:
         st.info("Sube o captura una foto de una hoja de café y presiona **Analizar Imagen** para ver el diagnóstico.")
-
